@@ -16,17 +16,24 @@
 // If ul != cl guesses remaining -1. letter guessed remains onscreen and the user must guess again.
 // if ul != cl and no more guesses remain. Loss +1 and the game resets. */}
 
-var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
 var wins = 0;
 
 var losses = 0;
 
 var guesses = 9;
 
-var computerLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-console.log(computerLetter);
+var yourGuess = [];
 
+
+
+function newGame() {
+    guesses = 9;
+    yourGuess = [];
+    document.getElementById("guesses-remaining").innerHTML = guesses;
+    document.getElementById("user-letter-text").innerHTML = yourGuess;
+    startGame();
+    console.log(computerLetter);
+}
 function updateWins() {
     document.getElementById("win-count").innerHTML = "Wins: " + wins;
 }
@@ -37,19 +44,23 @@ function updateGuesses() {
 function updateLosses() {
     document.getElementById("lose-count").innerHTML = "Losses: " + losses;
 }
-function newGame() {
-    var computerLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    console.log(computerLetter);
-}
-
-document.onkeyup = function (event) {
-    var userLetter = (event.key);
-    console.log(userLetter);
 
     function logUserLetter() {
         document.getElementById("user-letter-text").innerHTML = "Your guesses so far: " + userLetter;
     }
 
+function startGame() {
+    var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    var computerLetter = randomLetter;
+}
+startGame();
+
+function checkLetter() {
+    document.onkeyup = function (event) {
+        var userLetter = (event.key).toLowerCase();
+        yourGuess.push(userLetter);
+        console.log(userLetter);
 
     if (userLetter == computerLetter) {
         console.log(guesses, userLetter);
@@ -72,4 +83,8 @@ document.onkeyup = function (event) {
         newGame();
         return;
     }
-};
+}
+}
+
+    startGame();
+    checkLetter();
