@@ -76,20 +76,23 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-img {
-    width: 20%;
+    
+    img {
+        width: 20%;
+}
 }
 @media screen and (max-width: 640px){
     img{
         display: none;
     }
+
     section {
         padding: 10px;
     }
+
     .game-stats {
         padding: 10px;
         margin: 0 auto;
         font-size: 18px;
     }
-}
 }
